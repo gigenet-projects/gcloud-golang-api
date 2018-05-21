@@ -22,13 +22,13 @@ func (api *Client) ImportKeyPair(keyname string, public string) (key *KeyPair, e
 		return
 	}
 
-	body := &createKeyPairResponse{}
+	body := &KeyPair{}
 	err = xml.Unmarshal(b, &body)
 	if err != nil {
 		return
 	}
 
-	key = body.Key
+	key = body
 	err = ProcessError(b)
 
 	return

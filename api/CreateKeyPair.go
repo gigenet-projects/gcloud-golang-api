@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-type createKeyPairResponse struct {
-	Key *KeyPair `xml:"keyPair"`
-}
-
 func (api *Client) CreateKeyPair(keyname string) (key *KeyPair, err error) {
 	if keyname == "" {
 		return nil, errors.New("keyname is required")
@@ -24,13 +20,13 @@ func (api *Client) CreateKeyPair(keyname string) (key *KeyPair, err error) {
 		return
 	}
 
-	body := &createKeyPairResponse{}
+	body := &KeyPair{}
 	err = xml.Unmarshal(b, &body)
 	if err != nil {
 		return
 	}
 
-	key = body.Key
+	key = body
 	err = ProcessError(b)
 
 	return

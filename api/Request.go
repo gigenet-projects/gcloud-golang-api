@@ -29,9 +29,9 @@ func Request(BASEURL, APIKEY, SECRET string, date time.Time, action, params stri
 	if err != nil {
 		return nil, fmt.Errorf("invalid BASEURL: %s", err)
 	}
-
-	if u.Path == "" {
-		u.Path = "/"
+	
+	if (u.Path == "" || u.Path[len(u.Path)-1:] != "/" ) {
+		u.Path = u.Path + "/"
 	}
 
 	qs := buildQueryString(action, date, params)
@@ -42,12 +42,14 @@ func Request(BASEURL, APIKEY, SECRET string, date time.Time, action, params stri
 	if err != nil {
 		return nil, fmt.Errorf("could not form request: %s", err)
 	}
+
 	awsauth.Sign2(req, awsauth.Credentials{
 		AccessKeyID:     APIKEY,
 		SecretAccessKey: SECRET,
 	})
 
 	res, err := client.Do(req)
+
 	if err != nil {
 		return nil, err
 	}

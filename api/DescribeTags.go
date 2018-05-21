@@ -9,7 +9,7 @@ type Tag struct {
 	ResourceId   string `xml:"resourceId"`
 	ResourceType string `xml:"resourceType"`
 	Key          string `xml:"key"`
-	Value        string `xml:"omitempty"`
+	Value        string `xml:"value",omitempty`
 }
 
 type describeTagsResponse struct {

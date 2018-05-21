@@ -9,8 +9,8 @@ import (
 )
 
 type runInstancesResponse struct {
-	Owner     string      `xml:"reservation>ownerId"`
-	Instances []*Instance `xml:"reservation>instances>item"`
+	Owner     string      `xml:"ownerId"`
+	Instances []*Instance `xml:"instancesSet>item"`
 }
 
 func (api *Client) RunInstances(imageId, instanceType string, extras map[string]string) (instances []*Instance, err error) {

@@ -13,7 +13,7 @@ func buildQueryString(action string, date time.Time, params ...string) string {
 
 	p := []string{
 		"Action=" + action,
-		"Version=2009-03-31",
+		"Version=2013-10-15",
 	}
 
 	// append parameters
