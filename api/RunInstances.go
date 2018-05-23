@@ -47,6 +47,9 @@ func (api *Client) RunInstances(imageId, instanceType string, extras map[string]
 			case "billingterm":
 				buf.WriteString("&BillingTerm=")
 				buf.WriteString(v)
+			case "placement_availabilityzone":
+                                buf.WriteString("&Placement_AvailabilityZone=")
+                                buf.WriteString(v)
 			}
 		}
 	}
